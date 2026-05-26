@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>主要サービス・ツール リファレンス</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --color-primary: #1B4F8A;
+      --color-primary-hover: #163F6E;
+      --color-primary-light: #EBF2FB;
+      --color-accent: #2E7D32;
+      --color-accent-light: #E8F5E9;
+      --color-progress: #B45309;
+      --color-progress-light: #FEF3C7;
+      --color-bg: #F8F7F4;
+      --color-surface: #FFFFFF;
+      --color-border: #E2DDD6;
+      --color-border-strong: #C8C2B8;
+      --color-text-primary: #1A1A1A;
+      --color-text-secondary: #5C5752;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+    }
+
+    body {
+      font-family: "Noto Sans JP", "Inter", -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--color-text-primary);
+      background: var(--color-bg);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: 0 var(--space-6);
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header-badge {
+      background: var(--color-primary);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.04em;
+    }
+
+    header h1 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .header-progress {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      white-space: nowrap;
+    }
+
+    .header-progress strong {
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      flex-direction: column;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-6) var(--space-6);
+      gap: var(--space-4);
+    }
+
+    /* ── TOC (horizontal) ── */
+    aside {
+      width: 100%;
+    }
+
+    .toc {
+      position: sticky;
+      top: 56px;
+      z-index: 9;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+    }
+
+    .toc-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding-right: var(--space-3);
+      margin-right: var(--space-2);
+      border-right: 1px solid var(--color-border-strong);
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+    }
+
+    .toc-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      background: var(--pill-bg);
+      color: var(--pill-color);
+      border: 1px solid var(--pill-border);
+      transition: opacity 150ms;
+    }
+
+    .toc-pill:hover {
+      opacity: 0.8;
+    }
+
+    /* ── Main ── */
+    main {
+      min-width: 0;
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+
+    .page-subtitle {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-6);
+    }
+
+    /* 読む順序バナー */
+    .reading-order {
+      background: var(--color-primary-light);
+      border: 1px solid #C5D9EF;
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-5);
+      margin-bottom: var(--space-6);
+    }
+
+    .reading-order-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: var(--space-3);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .reading-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .reading-step {
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+
+    .step-num {
+      background: var(--color-primary);
+      color: #fff;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-arrow {
+      color: var(--color-border-strong);
+      font-size: 10px;
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: var(--space-7);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-3);
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    .section-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Service Card ── */
+    .card-grid {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-5) var(--space-4) var(--space-4);
+      box-shadow: var(--shadow-md);
+      display: grid;
+      grid-template-columns: 200px 1fr auto;
+      align-items: start;
+      gap: var(--space-4);
+      transition: box-shadow 150ms, border-color 150ms;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10), 0 1px 4px rgba(0, 0, 0, 0.05);
+      border-color: var(--color-border-strong);
+    }
+
+    .card[data-status="done"] {
+      border-left: 3px solid var(--color-accent);
+      background: linear-gradient(to right, #f0faf0 0%, var(--color-surface) 60%);
+      padding-left: calc(var(--space-4) - 2px);
+    }
+
+    .card[data-status="done"]:hover {
+      border-color: var(--color-accent);
+    }
+
+    .card[data-status="in_progress"] {
+      border-left: 3px solid var(--color-progress);
+      background: linear-gradient(to right, #fffbeb 0%, var(--color-surface) 60%);
+      padding-left: calc(var(--space-4) - 2px);
+    }
+
+    .card[data-status="in_progress"]:hover {
+      border-color: var(--color-progress);
+    }
+
+    .card-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      line-height: 1.3;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    .card-name small {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--color-text-secondary);
+      margin-top: 2px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    .card-link a {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-primary);
+      text-decoration: none;
+      white-space: nowrap;
+      padding: 4px 10px;
+      border: 1px solid #C5D9EF;
+      border-radius: var(--radius-full);
+      transition: background 150ms;
+    }
+
+    .card-link a:hover {
+      background: var(--color-primary-light);
+    }
+
+    .status-seg {
+      display: inline-flex;
+      border: 1px solid var(--color-border-strong);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .status-seg button {
+      padding: 3px 9px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      font-size: 11px;
+      font-weight: 600;
+      font-family: inherit;
+      transition: background 150ms, color 150ms;
+    }
+
+    .status-seg button + button {
+      border-left: 1px solid var(--color-border-strong);
+    }
+
+    .status-seg button[data-active="true"][data-val="todo"] {
+      background: #e8e5e0;
+      color: var(--color-text-primary);
+    }
+
+    .status-seg button[data-active="true"][data-val="in_progress"] {
+      background: var(--color-progress-light);
+      color: var(--color-progress);
+    }
+
+    .status-seg button[data-active="true"][data-val="done"] {
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+    }
+
+    /* beta badge */
+    .badge-beta {
+      display: inline-block;
+      background: var(--color-warning-bg, #FEF3C7);
+      color: #B45309;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 1px 7px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.04em;
+      margin-left: var(--space-2);
+      vertical-align: middle;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      padding: var(--space-6) 0 var(--space-7);
+    }
+
+    @media (max-width: 768px) {
+      .layout {
+        padding: var(--space-4);
+      }
+
+      .toc {
+        top: 56px;
+      }
+
+      .card {
+        grid-template-columns: 1fr;
+      }
+
+      .card-link {
+        justify-self: start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <span class="header-badge">Databricks案件 事前キャッチアップ</span>
+    <h1>主要サービス・ツール リファレンス</h1>
+    <span class="header-progress" id="header-progress"></span>
+  </header>
+
+  <div class="layout">
+
+    <!-- TOC -->
+    <aside>
+      <nav class="toc">
+        <div class="toc-title">カテゴリ</div>
+        <a href="#platform" class="toc-pill" style="--pill-color:#1B4F8A;--pill-bg:#EBF2FB;--pill-border:#C5D9EF">プラットフォーム基盤</a>
+        <a href="#pipeline" class="toc-pill" style="--pill-color:#2E7D32;--pill-bg:#E8F5E9;--pill-border:#C8E6C9">データ層・パイプライン</a>
+        <a href="#ai" class="toc-pill" style="--pill-color:#7B3FA0;--pill-bg:#F3E8FF;--pill-border:#DDD0F0">AI・エージェント</a>
+        <a href="#search" class="toc-pill" style="--pill-color:#C97A00;--pill-bg:#FEF3C7;--pill-border:#FCD34D">検索・ナレッジ</a>
+        <a href="#ui" class="toc-pill" style="--pill-color:#C0392B;--pill-bg:#FDEDEC;--pill-border:#FADBD8">UI・デプロイ・運用</a>
+      </nav>
+    </aside>
+
+    <main>
+      <h1 class="page-title">主要サービス・ツール リファレンス</h1>
+      <p class="page-subtitle">AI エージェント開発で使用するコンポーネントの概要と公式ドキュメントへのリンク集</p>
+
+      <!-- 読む順序 -->
+      <div class="reading-order">
+        <div class="reading-order-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 20h9" />
+            <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+          </svg>
+          推奨学習順序
+        </div>
+        <div class="reading-steps">
+          <div class="reading-step"><span class="step-num">1</span>Azure Databricks 概要</div>
+          <span class="step-arrow">›</span>
+          <div class="reading-step"><span class="step-num">2</span>Unity Catalog</div>
+          <span class="step-arrow">›</span>
+          <div class="reading-step"><span class="step-num">3</span>Delta Lake + Medallion</div>
+          <span class="step-arrow">›</span>
+          <div class="reading-step"><span class="step-num">4</span>Vector Search</div>
+          <span class="step-arrow">›</span>
+          <div class="reading-step"><span class="step-num">5</span>Agent Framework</div>
+          <span class="step-arrow">›</span>
+          <div class="reading-step"><span class="step-num">6</span>AI Gateway</div>
+          <span class="step-arrow">›</span>
+          <div class="reading-step"><span class="step-num">7</span>Databricks Apps</div>
+          <span class="step-arrow">›</span>
+          <div class="reading-step"><span class="step-num">8</span>MLflow</div>
+          <span class="step-arrow">›</span>
+          <div class="reading-step"><span class="step-num">9</span>Asset Bundles</div>
+        </div>
+      </div>
+
+      <!-- プラットフォーム基盤 -->
+      <section class="section" id="platform">
+        <div class="section-header">
+          <div class="section-icon" style="background:#EBF2FB">🏗️</div>
+          <h2 class="section-title" style="color:#1B4F8A">プラットフォーム基盤</h2>
+        </div>
+        <div class="card-grid">
+          <div class="card" data-card-id="azure-databricks">
+            <div class="card-name">Azure Databricks</div>
+            <div class="card-desc">Microsoft Azure 上で動く統合データ・AI プラットフォーム。ノートブック・ジョブ・SQL・ML が一体化している。</div>
+            <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/introduction/"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="adls-gen2">
+            <div class="card-name">ADLS Gen2 <small>Azure Data Lake Storage Gen2</small></div>
+            <div class="card-desc">Azure の大規模ストレージ。Databricks のデータ保存先として使う。階層型名前空間が特徴。</div>
+            <div class="card-link"><a
+                href="https://learn.microsoft.com/ja-jp/azure/storage/blobs/data-lake-storage-introduction"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="unity-catalog">
+            <div class="card-name">Unity Catalog</div>
+            <div class="card-desc">Databricks のデータガバナンス基盤。カタログ／スキーマ／テーブル／Volume の権限を一元管理する。</div>
+            <div class="card-link"><a
+                href="https://learn.microsoft.com/ja-jp/azure/databricks/data-governance/unity-catalog/"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- データ層・パイプライン -->
+      <section class="section" id="pipeline">
+        <div class="section-header">
+          <div class="section-icon" style="background:#E8F5E9">🔄</div>
+          <h2 class="section-title" style="color:#2E7D32">データ層・パイプライン</h2>
+        </div>
+        <div class="card-grid">
+          <div class="card" data-card-id="delta-lake">
+            <div class="card-name">Delta Lake</div>
+            <div class="card-desc">ACID トランザクション対応のオープンフォーマット。Databricks のデフォルトストレージ形式で Lakehouse を実現する。</div>
+            <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/delta/"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="medallion">
+            <div class="card-name">Medallion アーキテクチャ <small>Bronze / Silver / Gold</small></div>
+            <div class="card-desc">データ品質を段階的に高めるレイヤ設計。Bronze=生データ、Silver=正規化、Gold=業務集計。</div>
+            <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/lakehouse/medallion"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="unity-catalog-volumes">
+            <div class="card-name">Unity Catalog Volumes</div>
+            <div class="card-desc">ファイル（PDF・画像など）を UC で管理する非テーブルストレージ。Bronze 層への PDF 格納に使う。</div>
+            <div class="card-link"><a
+                href="https://learn.microsoft.com/ja-jp/azure/databricks/connect/unity-catalog/volumes"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="auto-loader">
+            <div class="card-name">Auto Loader</div>
+            <div class="card-desc">クラウドストレージへの新着ファイルを自動検知してインクリメンタル取込するストリーミング取込機能。</div>
+            <div class="card-link"><a
+                href="https://learn.microsoft.com/ja-jp/azure/databricks/ingestion/cloud-object-storage/auto-loader/"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="lakeflow-jobs">
+            <div class="card-name">Lakeflow Jobs <small>旧 Workflows</small></div>
+            <div class="card-desc">バッチ・定期実行・パイプライン管理。Silver/Gold 変換ジョブや通知に使う。</div>
+            <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/jobs/"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="ai-parse-document">
+            <div class="card-name"><code>ai_parse_document</code> 関数</div>
+            <div class="card-desc">SQL 関数。PDF や画像を LLM でパースして構造化データに変換する。許認可書類の抽出に使う。</div>
+            <div class="card-link"><a
+                href="https://learn.microsoft.com/ja-jp/azure/databricks/sql/language-manual/functions/ai_parse_document"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI・エージェント -->
+      <section class="section" id="ai">
+        <div class="section-header">
+          <div class="section-icon" style="background:#F3E8FF">🤖</div>
+          <h2 class="section-title" style="color:#7B3FA0">AI・エージェント</h2>
+        </div>
+        <div class="card-grid">
+          <div class="card" data-card-id="mosaic-ai-agent-framework">
+            <div class="card-name">Mosaic AI Agent Framework</div>
+            <div class="card-desc">Databricks 公式のエージェント開発フレームワーク。ツール呼び出し・RAG・MLflow 統合が揃っている。</div>
+            <div class="card-link"><a
+                href="https://learn.microsoft.com/ja-jp/azure/databricks/generative-ai/agent-framework/build-agents"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="unity-ai-gateway">
+            <div class="card-name">Unity AI Gateway<span class="badge-beta">Beta</span></div>
+            <div class="card-desc">エージェントからの LLM 呼び出しを一元管理するプロキシ。権限・レート制限・ガードレール・推論ログを提供。</div>
+            <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/ai-gateway/overview-beta"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="foundation-model-apis">
+            <div class="card-name">Foundation Model APIs</div>
+            <div class="card-desc">Databricks が提供する LLM エンドポイント（Azure OpenAI 等）。AI Gateway 経由で呼び出す。</div>
+            <div class="card-link"><a
+                href="https://learn.microsoft.com/ja-jp/azure/databricks/machine-learning/foundation-models/"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="model-serving">
+            <div class="card-name">Model Serving</div>
+            <div class="card-desc">カスタムモデル（埋め込みモデル等）をリアルタイム API として提供する推論基盤。図面埋め込みモデルのホストに使う。</div>
+            <div class="card-link"><a
+                href="https://learn.microsoft.com/ja-jp/azure/databricks/machine-learning/model-serving/"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="langgraph-langchain">
+            <div class="card-name">LangGraph / LangChain</div>
+            <div class="card-desc">Python 製エージェントオーケストレーションライブラリ。状態管理・ツール呼び出し・マルチエージェントに対応。</div>
+            <div class="card-link"><a href="https://langchain-ai.github.io/langgraph/" target="_blank">公式ドキュメント →</a>
+            </div>
+          </div>
+          <div class="card" data-card-id="multi-agent">
+            <div class="card-name">マルチエージェント <small>Supervisor パターン</small></div>
+            <div class="card-desc">複数エージェントを Supervisor が統括するパターン。本プロジェクトの 2 エージェント統合に対応。</div>
+            <div class="card-link"><a
+                href="https://learn.microsoft.com/ja-jp/azure/databricks/generative-ai/agent-framework/multi-agent-apps"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 検索・ナレッジ -->
+      <section class="section" id="search">
+        <div class="section-header">
+          <div class="section-icon" style="background:#FEF3C7">🔍</div>
+          <h2 class="section-title" style="color:#C97A00">検索・ナレッジ</h2>
+        </div>
+        <div class="card-grid">
+          <div class="card" data-card-id="vector-search">
+            <div class="card-name">Vector Search</div>
+            <div class="card-desc">Delta テーブルと同期するベクトル検索エンジン。テキスト・図面の類似検索インデックスを作る。</div>
+            <div class="card-link"><a
+                href="https://learn.microsoft.com/ja-jp/azure/databricks/generative-ai/vector-search"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="rag">
+            <div class="card-name">RAG <small>Retrieval-Augmented Generation</small></div>
+            <div class="card-desc">検索して得たドキュメントを LLM のコンテキストに付与して回答精度を上げる手法。Vector Search と組み合わせる。</div>
+            <div class="card-link"><a
+                href="https://www.databricks.com/product/machine-learning/retrieval-augmented-generation"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="byo-embeddings">
+            <div class="card-name">BYO Embeddings <small>自前埋め込みモデル</small></div>
+            <div class="card-desc">Vector Search で外部モデルの埋め込みを使う方法。図面（マルチモーダル）検索に必要。</div>
+            <div class="card-link"><a
+                href="https://learn.microsoft.com/ja-jp/azure/databricks/generative-ai/vector-search#delta-sync-index-with-self-managed-embeddings"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI・デプロイ・運用 -->
+      <section class="section" id="ui">
+        <div class="section-header">
+          <div class="section-icon" style="background:#FDEDEC">🚀</div>
+          <h2 class="section-title" style="color:#C0392B">UI・デプロイ・運用</h2>
+        </div>
+        <div class="card-grid">
+          <div class="card" data-card-id="databricks-apps">
+            <div class="card-name">Databricks Apps</div>
+            <div class="card-desc">Databricks 上で Python Web アプリをホストする機能。Chat UI 埋め込みや業務画面に使う。OAuth・UC 統合済み。</div>
+            <div class="card-link"><a
+                href="https://learn.microsoft.com/ja-jp/azure/databricks/dev-tools/databricks-apps/"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="mlflow">
+            <div class="card-name">MLflow</div>
+            <div class="card-desc">実験管理・モデルレジストリ・トレース・評価を提供する OSS。エージェントの回答品質追跡に使う。</div>
+            <div class="card-link"><a href="https://mlflow.org/docs/latest/llms/index.html" target="_blank">公式ドキュメント
+                →</a></div>
+          </div>
+          <div class="card" data-card-id="databricks-asset-bundles">
+            <div class="card-name">Databricks Asset Bundles</div>
+            <div class="card-desc">YAML で Databricks リソース（Jobs・Apps・エンドポイント）を IaC 管理する CI/CD ツール。</div>
+            <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/dev-tools/bundles/"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="lakeview-dashboard">
+            <div class="card-name">Lakeview ダッシュボード</div>
+            <div class="card-desc">Databricks SQL の結果をノーコードで可視化するダッシュボード機能。本開発の進捗・利用量表示に使う。</div>
+            <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/dashboards/"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+          <div class="card" data-card-id="system-tables">
+            <div class="card-name">システムテーブル</div>
+            <div class="card-desc">Databricks が自動収集する利用量・監査・コストのメタデータテーブル。ガバナンス可視化に使う。</div>
+            <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/admin/system-tables/"
+                target="_blank">公式ドキュメント →</a></div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        created by <a href="https://github.com/chun-mura" target="_blank">chum-mura</a>
+      </footer>
+    </main>
+
+  </div>
+
+  <script>
+    const STATUS_LABELS = { todo: '未完了', in_progress: '進行中', done: '完了' };
+
+    function updateProgress() {
+      const cards = document.querySelectorAll('.card[data-card-id]');
+      const done = [...cards].filter(c => c.dataset.status === 'done').length;
+      const el = document.getElementById('header-progress');
+      el.innerHTML = `<strong>${done}</strong> / ${cards.length} 完了`;
+    }
+
+    function createSegment(status) {
+      const seg = document.createElement('div');
+      seg.className = 'status-seg';
+      Object.entries(STATUS_LABELS).forEach(([val, label]) => {
+        const btn = document.createElement('button');
+        btn.dataset.val = val;
+        btn.dataset.active = val === status ? 'true' : 'false';
+        btn.textContent = label;
+        seg.appendChild(btn);
+      });
+      return seg;
+    }
+
+    function applyStatus(card, status) {
+      card.dataset.status = status;
+      card.querySelectorAll('.status-seg button').forEach(btn => {
+        btn.dataset.active = btn.dataset.val === status ? 'true' : 'false';
+      });
+      updateProgress();
+    }
+
+    async function init() {
+      const res = await fetch('/api/statuses');
+      const statuses = await res.json();
+
+      document.querySelectorAll('.card[data-card-id]').forEach(card => {
+        const id = card.dataset.cardId;
+        const status = statuses[id] ?? 'todo';
+
+        const seg = createSegment(status);
+        card.querySelector('.card-name').appendChild(seg);
+        card.dataset.status = status;
+
+        seg.addEventListener('click', async (e) => {
+          const btn = e.target.closest('button');
+          if (!btn) return;
+          const next = btn.dataset.val;
+          await fetch(`/api/status/${id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: next }),
+          });
+          applyStatus(card, next);
+        });
+      });
+
+      updateProgress();
+    }
+
+    init();
+  </script>
+</body>
+
+</html>
