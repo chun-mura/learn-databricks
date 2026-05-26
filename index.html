@@ -373,7 +373,7 @@
       transition: background 150ms, color 150ms;
     }
 
-    .status-seg button + button {
+    .status-seg button+button {
       border-left: 1px solid var(--color-border-strong);
     }
 
@@ -448,11 +448,16 @@
     <aside>
       <nav class="toc">
         <div class="toc-title">カテゴリ</div>
-        <a href="#platform" class="toc-pill" style="--pill-color:#1B4F8A;--pill-bg:#EBF2FB;--pill-border:#C5D9EF">プラットフォーム基盤</a>
-        <a href="#pipeline" class="toc-pill" style="--pill-color:#2E7D32;--pill-bg:#E8F5E9;--pill-border:#C8E6C9">データ層・パイプライン</a>
-        <a href="#ai" class="toc-pill" style="--pill-color:#7B3FA0;--pill-bg:#F3E8FF;--pill-border:#DDD0F0">AI・エージェント</a>
-        <a href="#search" class="toc-pill" style="--pill-color:#C97A00;--pill-bg:#FEF3C7;--pill-border:#FCD34D">検索・ナレッジ</a>
-        <a href="#ui" class="toc-pill" style="--pill-color:#C0392B;--pill-bg:#FDEDEC;--pill-border:#FADBD8">UI・デプロイ・運用</a>
+        <a href="#platform" class="toc-pill"
+          style="--pill-color:#1B4F8A;--pill-bg:#EBF2FB;--pill-border:#C5D9EF">プラットフォーム基盤</a>
+        <a href="#pipeline" class="toc-pill"
+          style="--pill-color:#2E7D32;--pill-bg:#E8F5E9;--pill-border:#C8E6C9">データ層・パイプライン</a>
+        <a href="#ai" class="toc-pill"
+          style="--pill-color:#7B3FA0;--pill-bg:#F3E8FF;--pill-border:#DDD0F0">AI・エージェント</a>
+        <a href="#search" class="toc-pill"
+          style="--pill-color:#C97A00;--pill-bg:#FEF3C7;--pill-border:#FCD34D">検索・ナレッジ</a>
+        <a href="#ui" class="toc-pill"
+          style="--pill-color:#C0392B;--pill-bg:#FDEDEC;--pill-border:#FADBD8">UI・デプロイ・運用</a>
       </nav>
     </aside>
 
@@ -497,20 +502,20 @@
           <h2 class="section-title" style="color:#1B4F8A">プラットフォーム基盤</h2>
         </div>
         <div class="card-grid">
-          <div class="card" data-card-id="azure-databricks">
+          <div class="card" data-status="done">
             <div class="card-name">Azure Databricks</div>
             <div class="card-desc">Microsoft Azure 上で動く統合データ・AI プラットフォーム。ノートブック・ジョブ・SQL・ML が一体化している。</div>
             <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/introduction/"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="adls-gen2">
+          <div class="card" data-status="done">
             <div class="card-name">ADLS Gen2 <small>Azure Data Lake Storage Gen2</small></div>
             <div class="card-desc">Azure の大規模ストレージ。Databricks のデータ保存先として使う。階層型名前空間が特徴。</div>
             <div class="card-link"><a
                 href="https://learn.microsoft.com/ja-jp/azure/storage/blobs/data-lake-storage-introduction"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="unity-catalog">
+          <div class="card" data-status="done">
             <div class="card-name">Unity Catalog</div>
             <div class="card-desc">Databricks のデータガバナンス基盤。カタログ／スキーマ／テーブル／Volume の権限を一元管理する。</div>
             <div class="card-link"><a
@@ -527,39 +532,39 @@
           <h2 class="section-title" style="color:#2E7D32">データ層・パイプライン</h2>
         </div>
         <div class="card-grid">
-          <div class="card" data-card-id="delta-lake">
+          <div class="card" data-status="done">
             <div class="card-name">Delta Lake</div>
             <div class="card-desc">ACID トランザクション対応のオープンフォーマット。Databricks のデフォルトストレージ形式で Lakehouse を実現する。</div>
             <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/delta/"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="medallion">
+          <div class="card" data-status="done">
             <div class="card-name">Medallion アーキテクチャ <small>Bronze / Silver / Gold</small></div>
             <div class="card-desc">データ品質を段階的に高めるレイヤ設計。Bronze=生データ、Silver=正規化、Gold=業務集計。</div>
             <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/lakehouse/medallion"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="unity-catalog-volumes">
+          <div class="card" data-status="done">
             <div class="card-name">Unity Catalog Volumes</div>
             <div class="card-desc">ファイル（PDF・画像など）を UC で管理する非テーブルストレージ。Bronze 層への PDF 格納に使う。</div>
             <div class="card-link"><a
                 href="https://learn.microsoft.com/ja-jp/azure/databricks/connect/unity-catalog/volumes"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="auto-loader">
+          <div class="card" data-status="done">
             <div class="card-name">Auto Loader</div>
             <div class="card-desc">クラウドストレージへの新着ファイルを自動検知してインクリメンタル取込するストリーミング取込機能。</div>
             <div class="card-link"><a
                 href="https://learn.microsoft.com/ja-jp/azure/databricks/ingestion/cloud-object-storage/auto-loader/"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="lakeflow-jobs">
+          <div class="card" data-status="done">
             <div class="card-name">Lakeflow Jobs <small>旧 Workflows</small></div>
             <div class="card-desc">バッチ・定期実行・パイプライン管理。Silver/Gold 変換ジョブや通知に使う。</div>
             <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/jobs/"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="ai-parse-document">
+          <div class="card" data-status="done">
             <div class="card-name"><code>ai_parse_document</code> 関数</div>
             <div class="card-desc">SQL 関数。PDF や画像を LLM でパースして構造化データに変換する。許認可書類の抽出に使う。</div>
             <div class="card-link"><a
@@ -576,40 +581,40 @@
           <h2 class="section-title" style="color:#7B3FA0">AI・エージェント</h2>
         </div>
         <div class="card-grid">
-          <div class="card" data-card-id="mosaic-ai-agent-framework">
+          <div class="card" data-status="done">
             <div class="card-name">Mosaic AI Agent Framework</div>
             <div class="card-desc">Databricks 公式のエージェント開発フレームワーク。ツール呼び出し・RAG・MLflow 統合が揃っている。</div>
             <div class="card-link"><a
                 href="https://learn.microsoft.com/ja-jp/azure/databricks/generative-ai/agent-framework/build-agents"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="unity-ai-gateway">
+          <div class="card" data-status="done">
             <div class="card-name">Unity AI Gateway<span class="badge-beta">Beta</span></div>
             <div class="card-desc">エージェントからの LLM 呼び出しを一元管理するプロキシ。権限・レート制限・ガードレール・推論ログを提供。</div>
             <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/ai-gateway/overview-beta"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="foundation-model-apis">
+          <div class="card" data-status="done">
             <div class="card-name">Foundation Model APIs</div>
             <div class="card-desc">Databricks が提供する LLM エンドポイント（Azure OpenAI 等）。AI Gateway 経由で呼び出す。</div>
             <div class="card-link"><a
                 href="https://learn.microsoft.com/ja-jp/azure/databricks/machine-learning/foundation-models/"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="model-serving">
+          <div class="card" data-status="done">
             <div class="card-name">Model Serving</div>
             <div class="card-desc">カスタムモデル（埋め込みモデル等）をリアルタイム API として提供する推論基盤。図面埋め込みモデルのホストに使う。</div>
             <div class="card-link"><a
                 href="https://learn.microsoft.com/ja-jp/azure/databricks/machine-learning/model-serving/"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="langgraph-langchain">
+          <div class="card" data-status="done">
             <div class="card-name">LangGraph / LangChain</div>
             <div class="card-desc">Python 製エージェントオーケストレーションライブラリ。状態管理・ツール呼び出し・マルチエージェントに対応。</div>
             <div class="card-link"><a href="https://langchain-ai.github.io/langgraph/" target="_blank">公式ドキュメント →</a>
             </div>
           </div>
-          <div class="card" data-card-id="multi-agent">
+          <div class="card" data-status="done">
             <div class="card-name">マルチエージェント <small>Supervisor パターン</small></div>
             <div class="card-desc">複数エージェントを Supervisor が統括するパターン。本プロジェクトの 2 エージェント統合に対応。</div>
             <div class="card-link"><a
@@ -626,21 +631,21 @@
           <h2 class="section-title" style="color:#C97A00">検索・ナレッジ</h2>
         </div>
         <div class="card-grid">
-          <div class="card" data-card-id="vector-search">
+          <div class="card" data-status="done">
             <div class="card-name">Vector Search</div>
             <div class="card-desc">Delta テーブルと同期するベクトル検索エンジン。テキスト・図面の類似検索インデックスを作る。</div>
             <div class="card-link"><a
                 href="https://learn.microsoft.com/ja-jp/azure/databricks/generative-ai/vector-search"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="rag">
+          <div class="card" data-status="done">
             <div class="card-name">RAG <small>Retrieval-Augmented Generation</small></div>
             <div class="card-desc">検索して得たドキュメントを LLM のコンテキストに付与して回答精度を上げる手法。Vector Search と組み合わせる。</div>
             <div class="card-link"><a
                 href="https://www.databricks.com/product/machine-learning/retrieval-augmented-generation"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="byo-embeddings">
+          <div class="card" data-status="done">
             <div class="card-name">BYO Embeddings <small>自前埋め込みモデル</small></div>
             <div class="card-desc">Vector Search で外部モデルの埋め込みを使う方法。図面（マルチモーダル）検索に必要。</div>
             <div class="card-link"><a
@@ -657,32 +662,32 @@
           <h2 class="section-title" style="color:#C0392B">UI・デプロイ・運用</h2>
         </div>
         <div class="card-grid">
-          <div class="card" data-card-id="databricks-apps">
+          <div class="card" data-status="done">
             <div class="card-name">Databricks Apps</div>
             <div class="card-desc">Databricks 上で Python Web アプリをホストする機能。Chat UI 埋め込みや業務画面に使う。OAuth・UC 統合済み。</div>
             <div class="card-link"><a
                 href="https://learn.microsoft.com/ja-jp/azure/databricks/dev-tools/databricks-apps/"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="mlflow">
+          <div class="card" data-status="done">
             <div class="card-name">MLflow</div>
             <div class="card-desc">実験管理・モデルレジストリ・トレース・評価を提供する OSS。エージェントの回答品質追跡に使う。</div>
             <div class="card-link"><a href="https://mlflow.org/docs/latest/llms/index.html" target="_blank">公式ドキュメント
                 →</a></div>
           </div>
-          <div class="card" data-card-id="databricks-asset-bundles">
+          <div class="card" data-status="done">
             <div class="card-name">Databricks Asset Bundles</div>
             <div class="card-desc">YAML で Databricks リソース（Jobs・Apps・エンドポイント）を IaC 管理する CI/CD ツール。</div>
             <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/dev-tools/bundles/"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="lakeview-dashboard">
+          <div class="card" data-status="done">
             <div class="card-name">Lakeview ダッシュボード</div>
             <div class="card-desc">Databricks SQL の結果をノーコードで可視化するダッシュボード機能。本開発の進捗・利用量表示に使う。</div>
             <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/dashboards/"
                 target="_blank">公式ドキュメント →</a></div>
           </div>
-          <div class="card" data-card-id="system-tables">
+          <div class="card" data-status="done">
             <div class="card-name">システムテーブル</div>
             <div class="card-desc">Databricks が自動収集する利用量・監査・コストのメタデータテーブル。ガバナンス可視化に使う。</div>
             <div class="card-link"><a href="https://learn.microsoft.com/ja-jp/azure/databricks/admin/system-tables/"
@@ -702,23 +707,10 @@
     const STATUS_LABELS = { todo: '未完了', in_progress: '進行中', done: '完了' };
 
     function updateProgress() {
-      const cards = document.querySelectorAll('.card[data-card-id]');
+      const cards = document.querySelectorAll('.card[data-status]');
       const done = [...cards].filter(c => c.dataset.status === 'done').length;
-      const el = document.getElementById('header-progress');
-      el.innerHTML = `<strong>${done}</strong> / ${cards.length} 完了`;
-    }
-
-    function createSegment(status) {
-      const seg = document.createElement('div');
-      seg.className = 'status-seg';
-      Object.entries(STATUS_LABELS).forEach(([val, label]) => {
-        const btn = document.createElement('button');
-        btn.dataset.val = val;
-        btn.dataset.active = val === status ? 'true' : 'false';
-        btn.textContent = label;
-        seg.appendChild(btn);
-      });
-      return seg;
+      document.getElementById('header-progress').innerHTML =
+        `<strong>${done}</strong> / ${cards.length} 完了`;
     }
 
     function applyStatus(card, status) {
@@ -729,35 +721,25 @@
       updateProgress();
     }
 
-    async function init() {
-      const res = await fetch('/api/statuses');
-      const statuses = await res.json();
-
-      document.querySelectorAll('.card[data-card-id]').forEach(card => {
-        const id = card.dataset.cardId;
-        const status = statuses[id] ?? 'todo';
-
-        const seg = createSegment(status);
-        card.querySelector('.card-name').appendChild(seg);
-        card.dataset.status = status;
-
-        seg.addEventListener('click', async (e) => {
-          const btn = e.target.closest('button');
-          if (!btn) return;
-          const next = btn.dataset.val;
-          await fetch(`/api/status/${id}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: next }),
-          });
-          applyStatus(card, next);
-        });
+    document.querySelectorAll('.card[data-status]').forEach(card => {
+      const seg = document.createElement('div');
+      seg.className = 'status-seg';
+      Object.entries(STATUS_LABELS).forEach(([val, label]) => {
+        const btn = document.createElement('button');
+        btn.dataset.val = val;
+        btn.dataset.active = val === card.dataset.status ? 'true' : 'false';
+        btn.textContent = label;
+        seg.appendChild(btn);
       });
+      card.querySelector('.card-name').appendChild(seg);
 
-      updateProgress();
-    }
+      seg.addEventListener('click', e => {
+        const btn = e.target.closest('button');
+        if (btn) applyStatus(card, btn.dataset.val);
+      });
+    });
 
-    init();
+    updateProgress();
   </script>
 </body>
 
