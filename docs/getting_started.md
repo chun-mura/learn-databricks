@@ -186,6 +186,145 @@ BIツール（Tableau、Power BIなど）からJDBC/ODBCで接続することも
 
 ---
 
+## 6. AI Gateway（Mosaic AI Gateway）
+
+Unity Catalogと統合されたLLMプロキシ。外部プロバイダー（OpenAI、Anthropic等）や内部モデルへのアクセスを一元管理する。
+
+### アーキテクチャ
+
+```
+ユーザー/Notebook
+    ↓
+AI Gateway Endpoint（レート制限・認証・ログ）
+    ↓
+外部プロバイダー（OpenAI / Anthropic / Azure OpenAI 等）
+または Databricks Model Serving
+```
+
+### UIでの操作
+
+```
+左サイドバー > Machine Learning > Serving > AI Gateway
+```
+
+エンドポイント作成の主な設定項目：
+
+| 項目 | 説明 |
+|------|------|
+| Endpoint name | 任意の名前（Unity Catalog上の識別子） |
+| Route type | `External Model`（外部API）/ `Foundation Model`（Databricks内蔵）/ `Custom` |
+| Provider | OpenAI, Anthropic, Azure OpenAI, AWS Bedrock, Google Vertex AI 等 |
+| Model name | `gpt-4o`, `claude-3-5-sonnet-20241022` 等 |
+| API Key | プロバイダーのAPIキー（Databricks Secretsに格納推奨） |
+
+### エンドポイント作成（Python SDK）
+
+```python
+import mlflow.deployments
+
+client = mlflow.deployments.get_deploy_client("databricks")
+
+client.create_endpoint(
+    name="my-openai-endpoint",
+    config={
+        "served_entities": [{
+            "external_model": {
+                "name": "gpt-4o",
+                "provider": "openai",
+                "task": "llm/v1/chat",
+                "openai_config": {
+                    "openai_api_key": "{{secrets/my-scope/openai-api-key}}"
+                }
+            }
+        }]
+    }
+)
+```
+
+### エンドポイント経由でLLMを呼び出す
+
+```python
+response = client.predict(
+    endpoint="my-openai-endpoint",
+    inputs={
+        "messages": [
+            {"role": "user", "content": "Databricksとは何ですか？"}
+        ],
+        "max_tokens": 256
+    }
+)
+print(response["choices"][0]["message"]["content"])
+```
+
+OpenAI互換クライアントでも呼び出せる：
+
+```python
+import openai
+
+client = openai.OpenAI(
+    api_key=dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiToken().get(),
+    base_url=f"{spark.conf.get('spark.databricks.workspaceUrl')}/serving-endpoints/my-openai-endpoint/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[{"role": "user", "content": "こんにちは"}]
+)
+```
+
+### SecretsへのAPIキー格納（推奨）
+
+```python
+# Databricks CLIでScretを登録（ターミナルから）
+# databricks secrets create-scope my-scope
+# databricks secrets put-secret my-scope openai-api-key
+
+# Notebook内での参照
+api_key = dbutils.secrets.get(scope="my-scope", key="openai-api-key")
+```
+
+### レート制限・ガードレール設定
+
+```python
+client.update_endpoint(
+    name="my-openai-endpoint",
+    config={
+        "rate_limits": [
+            {
+                "calls": 100,
+                "renewal_period": "minute",
+                "key": "user"  # ユーザー単位で制限
+            }
+        ],
+        "ai_gateway": {
+            "guardrails": {
+                "input": {
+                    "pii": {"behavior": "BLOCK"},  # PII検出でブロック
+                    "safety": True
+                }
+            },
+            "usage_tracking_config": {"enabled": True}
+        }
+    }
+)
+```
+
+### Unity Catalogとの統合
+
+| 機能 | 内容 |
+|------|------|
+| 権限管理 | `GRANT EXECUTE ON FUNCTION` でエンドポイント利用を制御 |
+| Lineage | どのNotebook/Jobがエンドポイントを呼んだか追跡可能 |
+| 監査ログ | Unity Catalog経由でアクセスログを記録 |
+| コスト追跡 | エンドポイントごとのトークン使用量を集計 |
+
+**ポイント**
+
+- Unity Catalog（セクション3）と同じガバナンス層でAIモデルアクセスも管理できる
+- 実際のDWHでは `Bronze/Silver/Gold層 → AI Gateway → LLM加工` の流れで使う
+
+---
+
 ## Glue/Athenaとの比較
 
 
